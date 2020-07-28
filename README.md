@@ -1,6 +1,6 @@
 # Enodo Fullstack Engineering Challenge
 
-This README will provide a brief overview of the project structure and how to run the project yourself.
+This README will provide a brief overview of the project structure and how to run the project yourself. For details on the scope of the project, please see the [original repository](https://github.com/enodoscore/enodo-fullstack-challenge).
 
 ## Project Structure
 - property_search (the folder where the core of the code is located)

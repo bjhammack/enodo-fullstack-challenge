@@ -29,5 +29,5 @@ This README will provide a brief overview of the project structure and how to ru
 ![selected](https://github.com/bjhammack/enodo-fullstack-challenge/blob/master/screenshots/selected.png?raw=true "Selected")
 - This can be done continuously, searching and selecting different addresses, filling up the "Selected" table.
 ![selected2](https://github.com/bjhammack/enodo-fullstack-challenge/blob/master/screenshots/selected_multiple.png?raw=true "Selected 2")
-- When you wish to remove a selected property, clicking the trash can to the righ of that property will remove it.
+- When you wish to remove a selected property, clicking the trash can to the right of that property will remove it.
 ![deselect](https://github.com/bjhammack/enodo-fullstack-challenge/blob/master/screenshots/deselect_hover.png?raw=true "Deselect Hover")

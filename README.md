@@ -15,7 +15,7 @@ This README will provide a brief overview of the project structure and how to ru
 
 ## Running the project
 - After ensuring all the required libraries are installed, FLASK_APP needs to be pointed towards this application [(the process varies based on your system)](https://flask.palletsprojects.com/en/1.1.x/tutorial/factory/).
-- Once that is complete, navigate to the property_search folder using your CLI and run `flask run`.
+- Once that is complete, navigate to the property_search folder using your CLI and run the command: `flask run`.
 - When the CLI indicates that the localhost is up and running, navigate to http://localhost:5000/search/ where you should be able to see and interact with the application.
 ![cli](https://github.com/bjhammack/enodo-fullstack-challenge/blob/master/screenshots/cli_server.png?raw=true "CLI Server")
 - If you wish to start with a completely fresh database, open the database_controller.py file, copy the directions at the top of the file, and paste them into your command line. This will generate a new `.db` file of the name you indicate.

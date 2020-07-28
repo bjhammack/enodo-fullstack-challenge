@@ -1,0 +1,49 @@
+.deselect:hover {
+	background-color: #F56C6C;
+	color: white;
+}
+
+.selections {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+.search-div {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 35%;
+}
+
+.inline-input {
+	display: inline-block;
+	width: 100%;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.sub-title {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+
+.far {
+	font-size: 18px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-y: auto;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+}
+tr:hover {
+	background-color:#f5f5f5;
+}

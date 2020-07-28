@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Property Search</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="(( url_for('static', filename='css/style.css') ))" type='text/css'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  </head>
+
+  <body>
+    <div id="selected-vue">
+      <div class='selections'>
+        <div class='search-div'>
+          <h1 class="sub-title">Property Search</h1>
+          <el-autocomplete
+            class="inline-input"
+            v-model="state"
+            :fetch-suggestions="querySearch"
+            placeholder="Search for a property (eg. 1513 W HARRISON...)."
+            :trigger-on-focus="false"
+            @select="newSelected"
+          ></el-autocomplete>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th>Address</th>
+              <th>Class Description</th>
+            </tr>
+            <tr v-for="(selected, index) in selectedList" :key='selected.PIN'>
+              <td>
+                {{ selected.FULL_ADDRESS }}
+              </td>
+              <td>
+                {{ selected.CLASS_DESCRIPTION }}
+              </td>
+              <td>
+                <el-button class='deselect' v-on:click="deleteSelected(index)"><i class='far'>&#xf2ed;</i></el-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#selected-vue',
+        data: {
+          selectedList: [],
+          selectedPin: '',
+          properties: [],
+          state: '',
+          timeout: null,
+        },
+        methods: {
+          getSelected: function() {
+            axios.get('/search/get')
+              .then(function(response) {
+                this.selectedList = response.data
+              }.bind(this))
+          },
+          newSelected: function(item) {
+            axios.post('/search/new', { 'PIN': item['link'] })
+              .then(function(response) {
+                this.getSelected()
+              }.bind(this))
+          },
+          deleteSelected: function(index) {
+            axios.post('/search/delete', this.selectedList[index])
+              .then(function(response) {
+                this.getSelected()
+              }.bind(this))
+          },
+          querySearch: _.debounce(function(queryString, cb) {
+            var properties = this.properties;
+            var results = queryString ? properties.filter(this.createFilter(queryString)) : properties;
+
+            clearTimeout(this.timeout);
+            this.timeout=setTimeout( () => {
+              cb(results);
+            }, 3000 * Math.random() );
+          }, 250),
+        
+          createFilter: function(queryString) {
+            return (link) => {
+              return (link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+            };
+          },
+          loadAll: function() {
+            axios.get('/search/data')
+              .then(function(response) {
+                this.properties = response.data
+              }.bind(this))
+          },
+          handleSelect: function(item) {
+            console.log(item);
+          }
+        },
+        beforeMount(){
+          this.getSelected()
+          this.loadAll()
+        },
+      })
+    </script>
+
+  </body>
+</html>
